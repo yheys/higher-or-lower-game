@@ -1,2 +1,2 @@
-usign the random module to compare the players from the list
-also using the conditional to campare the given player then gie the user chance to choose one from those
+A beginner-friendly Python console game where players guess which football star has a higher 2025 rating.
+Inspired by the classic Higher or Lower game.
