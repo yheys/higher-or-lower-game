@@ -1,13 +1,12 @@
 import random
 
 vs = """
-__       __       _____ 
-\ \     / /      / ____|
- \ \  /  /      | (___  
-  \ \/  /        \___ \ 
-   \   /         ____) |
-    \_/         |_____/  
-
+ __        __       _____ 
+ \\ \\     / /      / ___|
+  \\ \\  /  /      | (___  
+   \\ \\/  /        \\___\
+    \\   /         ____) |
+     \\_/         |_____/  
 """
 
 football_players = [
@@ -32,31 +31,45 @@ football_players = [
     {"name": "Bernardo Silva", "rating": 84},
     {"name": "Pedri", "rating": 84}
 ]
-print("welcome to yheys higher or lower game based on top players 2025 rating")
+
+print("Welcome to Yheys Higher or Lower game (Top Players 2025 Ratings) ⚽")
+
 score = 0
-you_get_the_ansewer = True
+game_on = True
+
 B = random.choice(football_players)
-while you_get_the_ansewer:
+
+while game_on:
     A = B
     B = random.choice(football_players)
-    if A==B:
-        B=random.choice(football_players)
-    for_guess = {"A": A, "B": B, }
-    print(f" Compare A: {A["name"]} \n {vs}\n  Aganest B: {B["name"]}")
-    rate_A = A["rating"]
-    rate_B = B["rating"]
-    guess = input("which player has higher rate in 2025?  write 'A' or 'B': ").upper()
-    print(f"{A["name"]} has {A["rating"]} rate.\n{B["name"]} has {B["rating"]} rate. ")
-    your_guess = for_guess[guess]
-    if rate_A > rate_B:
-        higher = rate_A
-    elif rate_A == rate_B:
-        higher = rate_B
-        print("both are equal")
+
+    while A == B:
+        B = random.choice(football_players)
+
+    print(f"\nCompare A: {A['name']}")
+    print(vs)
+    print(f"Against B: {B['name']}")
+
+    guess = input("Which player has higher rating in 2025? Type 'A' or 'B': ").upper()
+
+    if guess not in ["A", "B"]:
+        print("Invalid input! Game over.")
+        break
+
+    print(f"\n{A['name']} has {A['rating']} rating.")
+    print(f"{B['name']} has {B['rating']} rating.")
+
+    if A["rating"] > B["rating"]:
+        correct_answer = "A"
+    elif B["rating"] > A["rating"]:
+        correct_answer = "B"
     else:
-        higher = rate_B
-    score += 1
-    print(f"your score is {score}")
-    if your_guess["rating"] != higher:
-        you_get_the_ansewer = False
-        print(f"you fail and the score is {score}")
+        print("Both players have equal ratings!")
+        correct_answer = guess  # both correct
+
+    if guess == correct_answer:
+        score += 1
+        print(f"✅ Correct! Your score is {score}")
+    else:
+        print(f"❌ Wrong! Final score: {score}")
+        game_on = False
